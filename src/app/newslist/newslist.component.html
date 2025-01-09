@@ -1,0 +1,89 @@
+<section class="container">
+  <h2>Pogledajte naše kategorije</h2>
+  <div class="categories-wrapper">
+    <div
+      class="category"
+      [class.selected]="categoryId === '1'"
+      data-category="1"
+      (click)="onCategorySelect('1')"
+    >
+      <div class="category-icon">
+        <img src="/icons/category-1.svg" alt="" />
+      </div>
+      <h3>Kino</h3>
+    </div>
+    <div
+      class="category"
+      [class.selected]="categoryId === '2'"
+      data-category="2"
+      (click)="onCategorySelect('2')"
+    >
+      <div class="category-icon">
+        <img src="/icons/category-2.svg" alt="" />
+      </div>
+      <h3>Game reviews</h3>
+    </div>
+    <div
+      class="category"
+      [class.selected]="categoryId === '3'"
+      data-category="3"
+      (click)="onCategorySelect('3')"
+    >
+      <div class="category-icon">
+        <img src="/icons/category-3.svg" alt="" />
+      </div>
+      <h3>Biblioteka</h3>
+    </div>
+    <div
+      class="category"
+      [class.selected]="categoryId === '4'"
+      data-category="4"
+      (click)="onCategorySelect('4')"
+    >
+      <div class="category-icon">
+        <img src="/icons/category-4.svg" alt="" />
+      </div>
+      <h3>Show biz news</h3>
+    </div>
+  </div>
+  <form class="date-form" (ngSubmit)="onSubmit()" #newsForm="ngForm">
+    <div class="date-input">
+      <label for="datumOd">Datum Od</label>
+      <input id="datumOd" type="date" [(ngModel)]="fromDate" name="fromDate" />
+    </div>
+    <div class="date-input">
+      <label for="datumDo">Datum Do</label>
+      <input id="datumDo" type="date" [(ngModel)]="toDate" name="toDate" />
+    </div>
+    <div class="date-submit">
+      <button type="reset" (click)="onReset(newsForm)">Resetuj</button>
+    </div>
+    <div class="date-submit">
+      <button type="submit">Pretraži</button>
+    </div>
+  </form>
+  <div class="newslist-wrapper" *ngIf="news && news.length > 0">
+    <div class="news-card" *ngFor="let item of news">
+      <img src="/images/news.jpg" class="news-card-image" />
+      <div class="news-card-info">
+        <img
+          class="news-card-catimage"
+          [src]="'/icons/category-' + item.category_id + '.svg'"
+          alt="{{ item.category }} icon"
+        />
+        <p>
+          <small class="news-card-date">{{ item.date }}</small>
+        </p>
+      </div>
+      <div class="news-card-content">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.content }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="news && news.length === 0">
+    <br />
+    <p>No news found for the selected dates.</p>
+  </div>
+</section>

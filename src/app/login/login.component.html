@@ -1,0 +1,70 @@
+<section>
+  <div class="container-small flex-centered flex-column login-wrapper">
+    <p class="logo">
+      <img src="/icons/logo.svg" alt="NewsFeed Logo" />
+      NewsFeed
+    </p>
+
+    <form
+      class="flex-centered flex-column login-form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Username Field -->
+      <div class="field-wrap">
+        <label for="username">Korisničko ime <span>*</span></label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Unesite korisničko ime"
+        />
+        <div
+          *ngIf="username?.invalid && username?.touched"
+          class="error-message"
+        >
+          <small *ngIf="username?.errors?.['required']">
+            Korisničko ime je obavezno
+          </small>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="field-wrap">
+        <label for="password">Šifra <span>*</span></label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Unesite vašu šifru"
+        />
+        <div
+          *ngIf="password?.invalid && password?.touched"
+          class="error-message"
+        >
+          <small *ngIf="password?.errors?.['required']">
+            Šifra je obavezna
+          </small>
+          <small *ngIf="password?.errors?.['minlength']">
+            Šifra mora imati najmanje 6 karaktera
+          </small>
+        </div>
+      </div>
+
+      <!-- Password Change Link -->
+      <p class="password-change">
+        <a routerLink="/register" class="password-change">
+          Nemate nalog? Registrujte se
+        </a>
+      </p>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid">Prijavite se</button>
+
+      <!-- Error Message Display -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</section>

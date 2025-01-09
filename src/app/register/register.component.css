@@ -1,0 +1,13 @@
+.register-wrapper .logo {
+  margin-bottom: var(--space-l);
+}
+
+.register-form {
+  gap: var(--space-s);
+  width: 100%;
+  max-width: 640px;
+}
+
+.field-wrap {
+  width: 100%;
+}

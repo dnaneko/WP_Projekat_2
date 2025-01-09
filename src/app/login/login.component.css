@@ -1,0 +1,26 @@
+.login-wrapper .logo {
+  margin-bottom: var(--space-l);
+}
+
+.login-form {
+  gap: var(--space-s);
+  width: 100%;
+  max-width: 640px;
+}
+
+.field-wrap {
+  width: 100%;
+}
+
+.password-change {
+  width: 100%;
+  display: block;
+  text-align: right;
+  transition: color 0.25s;
+  color: var(--color-white);
+}
+
+.password-change:hover {
+  cursor: pointer;
+  color: var(--color-accent);
+}

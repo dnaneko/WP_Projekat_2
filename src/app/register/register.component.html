@@ -1,0 +1,135 @@
+<section>
+  <div class="container-small flex-centered flex-column register-wrapper">
+    <p class="logo">
+      <img src="/icons/logo.svg" alt="NewsFeed Logo" />
+      NewsFeed
+    </p>
+
+    <form
+      class="flex-centered flex-column register-form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+      <!-- Name Field -->
+      <div class="field-wrap">
+        <label for="name">Ime <span>*</span></label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          [class.invalid]="name?.invalid && name?.touched"
+        />
+        <div class="error-message" *ngIf="name?.invalid && name?.touched">
+          <small>Ime je obavezno</small>
+        </div>
+      </div>
+
+      <!-- Last Name Field -->
+      <div class="field-wrap">
+        <label for="lastName">Prezime <span>*</span></label>
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          [class.invalid]="lastName?.invalid && lastName?.touched"
+        />
+        <div
+          class="error-message"
+          *ngIf="lastName?.invalid && lastName?.touched"
+        >
+          <small>Prezime je obavezno</small>
+        </div>
+      </div>
+
+      <!-- Username Field -->
+      <div class="field-wrap">
+        <label for="username">Korisničko ime <span>*</span></label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          [class.invalid]="username?.invalid && username?.touched"
+        />
+        <div
+          class="error-message"
+          *ngIf="username?.invalid && username?.touched"
+        >
+          <small *ngIf="username?.errors?.['required']"
+            >Korisničko ime je obavezno</small
+          >
+          <small *ngIf="username?.errors?.['minlength']">
+            Korisničko ime mora imati najmanje 4 karaktera
+          </small>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="field-wrap">
+        <label for="email">Email <span>*</span></label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          [class.invalid]="email?.invalid && email?.touched"
+        />
+        <div class="error-message" *ngIf="email?.invalid && email?.touched">
+          <small *ngIf="email?.errors?.['required']">Email je obavezan</small>
+          <small *ngIf="email?.errors?.['email']"
+            >Neispravan format email-a</small
+          >
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="field-wrap">
+        <label for="password">Šifra <span>*</span></label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          [class.invalid]="password?.invalid && password?.touched"
+        />
+        <div
+          class="error-message"
+          *ngIf="password?.invalid && password?.touched"
+        >
+          <small *ngIf="password?.errors?.['required']"
+            >Šifra je obavezna</small
+          >
+          <small *ngIf="password?.errors?.['minlength']">
+            Šifra mora imati najmanje 6 karaktera
+          </small>
+        </div>
+      </div>
+
+      <!-- Password Confirmation Field -->
+      <div class="field-wrap">
+        <label for="passwordConfirm">Potvrda šifre <span>*</span></label>
+        <input
+          type="password"
+          id="passwordConfirm"
+          formControlName="passwordConfirm"
+          [class.invalid]="passwordConfirm?.invalid && passwordConfirm?.touched"
+        />
+        <div
+          class="error-message"
+          *ngIf="passwordConfirm?.invalid && passwordConfirm?.touched"
+        >
+          <small>Potvrda šifre je obavezna</small>
+        </div>
+        <div
+          *ngIf="passwordMismatch && registerForm.touched"
+          class="error-message"
+        >
+          <small>Šifre se ne podudaraju</small>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="registerForm.invalid">
+        Registrujte se
+      </button>
+    </form>
+  </div>
+</section>
